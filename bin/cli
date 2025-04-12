@@ -4,7 +4,7 @@ require_relative "../lib/integrator"
 
 AVAILABLE = {
   dog: {
-    client: Integrator::DogApiClient,
+    client: Integrator::Clients::DogApiClient,
     actions: [
       {
         fn: :breeds,
