@@ -17,6 +17,16 @@ AVAILABLE = {
         args: 1
       }
     ]
+  },
+  library: {
+    client: Integrator::Clients::OpenLibraryClient,
+    actions: [
+      {
+        fn: :authors,
+        type: :list,
+        args: 1
+      }
+    ]
   }
 }
 
@@ -27,22 +37,26 @@ if AVAILABLE.keys.map(&:to_s).include? ARGV[0]
   action = AVAILABLE[key][:actions].find { |a| a[:fn].to_s == ARGV[1] }
   
   if action
-    extra_args = {}
-    extra_args[:page] = ARGV[action[:pagination]] if action.key?(:pagination) && ARGV[action[:pagination]]
+    begin
+      extra_args = {}
+      extra_args[:page] = ARGV[action[:pagination]] if action.key?(:pagination) && ARGV[action[:pagination]]
 
-    result = if action[:args]
-      klass.send(ARGV[1].to_sym, *ARGV[2..(2+ action[:args] - 1)], **extra_args)
-    else
-      klass.send(ARGV[1].to_sym, **extra_args)
-    end
-    
-    if action[:type] == :list
-      result.each do |item|
-        puts item.output
-        puts "-" * 20
+      result = if action[:args]
+        klass.send(ARGV[1].to_sym, *ARGV[2..(2+ action[:args] - 1)], **extra_args)
+      else
+        klass.send(ARGV[1].to_sym, **extra_args)
       end
-    else
-      puts result.output
+      
+      if action[:type] == :list
+        result.each do |item|
+          puts item.output
+          puts "-" * 20
+        end
+      else
+        puts result.output
+      end
+    rescue => e
+      puts "Failed to perform #{key} -> #{action[:fn].to_s} (Error: #{e.message})"
     end
   else
     puts "API #{key} does not support action #{ARGV[1]}. Supported actions: #{possible_actions.join(", ")}"
