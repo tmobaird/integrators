@@ -7,6 +7,9 @@ module Integrator
 
       def run
         parser = CommandParser.new
+        parser.on_cmd("help", "show help") do
+          parser.help
+        end
         Integrator::REGISTERED.each do |config|
           parser.on_cmd(config[:name], config[:description]) do |args|
             api_parser = CommandParser.new(config[:name])
