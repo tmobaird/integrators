@@ -1,4 +1,5 @@
-require "debug"
+require "erb"
+
 module Integrator
   module Presenters
     module OpenLibrary
@@ -14,12 +15,9 @@ module Integrator
         end
 
         def output
-          %(Name: #{@name}
-Date of Birth: #{@birth_date}
-Average Review: #{@ratings_average} / 5 #{"⭐️" * @ratings_average.floor}
-No. of Reviews:  #{@ratings_count}
-Top Subjects:
-#{@top_subjects.map { |s| "- #{s}" }.join("\n")})
+          template_file = File.join(File.dirname(__FILE__), "author.text.erb")
+          template = ERB.new(File.read(template_file), trim_mode: "<>")
+          template.result(binding)
         end
       end
     end

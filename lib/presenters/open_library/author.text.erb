@@ -1,0 +1,8 @@
+Name: <%= @name %>
+Date of Birth: <%= @birth_date %>
+Average Review: <%= @ratings_average %> / 5 <%= "⭐️" * @ratings_average.floor %>
+No. of Reviews:  <%= @ratings_count %>
+Top Subjects:
+<% @top_subjects.each do |s| %>
+<%= "- " + s + "\n" %>
+<% end %>

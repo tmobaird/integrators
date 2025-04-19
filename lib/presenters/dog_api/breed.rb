@@ -1,3 +1,5 @@
+require "erb"
+
 module Integrator
   module Presenters
     module DogApi
@@ -14,11 +16,9 @@ module Integrator
         end
 
         def output
-          %(Breed: #{@name} (#{@id})
-#{@description}
-
-Lifespan: #{@min_life} - #{@max_life}
-Hypoallergenic: #{@hypoallergenic ? "Yes" : "No"})
+          template_file = File.join(File.dirname(__FILE__), "breed.text.erb")
+          template = ERB.new(File.read(template_file))
+          template.result(binding)
         end
       end
     end
