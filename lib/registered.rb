@@ -11,6 +11,12 @@ module Integrator
       description: "Get information about your favorite books!",
       client: Clients::OpenLibraryClient,
       actions: [:authors]
+    },
+    {
+      name: "restful",
+      description: "Interaction with the restful api",
+      client: Clients::RestfulApiClient,
+      actions: [:objects, :object, :create_object]
     }
   ]
 end

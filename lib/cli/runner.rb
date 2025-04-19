@@ -14,7 +14,7 @@ module Integrator
               parameters = config[:client].method(action).parameters
               api_parser.on_cmd(action.to_s, "Performing #{action}", parameters) do |api_args|
                 required, optional = params(config[:client], action, api_args)
-                response = config[:client].send(action, *required, **optional)
+                response = config[:client].send(action, *required, *api_args.variables.map { |k, v| v }, **optional)
                 output(response)
               rescue => e
                 puts "Failed to perform #{config[:name]} -> #{action} (Error: #{e.message})"
