@@ -6,7 +6,7 @@ module Integrator
       URL = "https://openlibrary.org"
 
       class << self
-        def authors(q = nil)
+        def authors(q: nil)
           query = {}
           query[:q] = q if q
           response = HTTParty.get("#{URL}/search/authors.json", query: query)

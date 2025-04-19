@@ -1,66 +1,13 @@
 #!/usr/bin/env ruby
 
+# Examples
+# cli dogs create name="german shepherd"
+# cli dogs update 2 name="german hounddog" height=20
+#
+# Approach
+# Iterate through argv, looking for matches
+# if match is found, apply rule (which could be nesting matches)
+require "debug"
 require_relative "../lib/integrator"
 
-AVAILABLE = {
-  dog: {
-    client: Integrator::Clients::DogApiClient,
-    actions: [
-      {
-        fn: :breeds,
-        type: :list,
-        pagination: 2
-      },
-      {
-        fn: :breed,
-        type: :single,
-        args: 1
-      }
-    ]
-  },
-  library: {
-    client: Integrator::Clients::OpenLibraryClient,
-    actions: [
-      {
-        fn: :authors,
-        type: :list,
-        args: 1
-      }
-    ]
-  }
-}
-
-if AVAILABLE.keys.map(&:to_s).include? ARGV[0]
-  key = ARGV[0].to_sym
-  klass = AVAILABLE[key][:client]
-  possible_actions = AVAILABLE[key][:actions].map { |a| a[:fn].to_s }
-  action = AVAILABLE[key][:actions].find { |a| a[:fn].to_s == ARGV[1] }
-  
-  if action
-    begin
-      extra_args = {}
-      extra_args[:page] = ARGV[action[:pagination]] if action.key?(:pagination) && ARGV[action[:pagination]]
-
-      result = if action[:args]
-        klass.send(ARGV[1].to_sym, *ARGV[2..(2+ action[:args] - 1)], **extra_args)
-      else
-        klass.send(ARGV[1].to_sym, **extra_args)
-      end
-      
-      if action[:type] == :list
-        result.each do |item|
-          puts item.output
-          puts "-" * 20
-        end
-      else
-        puts result.output
-      end
-    rescue => e
-      puts "Failed to perform #{key} -> #{action[:fn].to_s} (Error: #{e.message})"
-    end
-  else
-    puts "API #{key} does not support action #{ARGV[1]}. Supported actions: #{possible_actions.join(", ")}"
-  end
-else
-  puts "API #{ARGV[0]} is not supported."
-end
+Integrator::Cli::Runner.new(ARGV).run

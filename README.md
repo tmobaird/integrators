@@ -23,3 +23,10 @@ Let's practice integrating with all sorts of HTTP APIs
 - [ ] Binary get - image (https://cataas.com/)
 - [ ] Streaming (openai api)
 - [ ] SOAP
+
+### What should writes look like
+
+cli <api> <action> <args> <fields>
+
+cli dogs create name="german shepherd"
+cli dogs update 2 name="german hounddog" height=20
