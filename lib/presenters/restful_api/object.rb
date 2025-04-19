@@ -7,7 +7,7 @@ module Integrator
         def initialize(id, name, data)
           @id = id
           @name = name
-          @data = data
+          @data = data || []
         end
 
         def output

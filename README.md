@@ -8,9 +8,9 @@ Let's practice integrating with all sorts of HTTP APIs
 - [x] JSON GET one (https://dogapi.dog/docs/api-v2)
 - [x] Pagination via query params
 - [x] Filtering via query params
-- [ ] JSON POST (https://restful-api.dev/)
-- [ ] JSON PUT (https://restful-api.dev/)
-- [ ] JSON DELETE (https://restful-api.dev/)
+- [x] JSON POST (https://restful-api.dev/)
+- [x] JSON PUT (https://restful-api.dev/)
+- [x] JSON DELETE (https://restful-api.dev/)
 - [ ] Api Key Authentication (openai api)
 - [ ] OAuth (https://developers.google.com/analytics/)
 - [ ] Basic authentication (jira)

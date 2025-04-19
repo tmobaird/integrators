@@ -20,6 +20,7 @@ module Integrator
           response = HTTParty.get(URL + "/#{id}", headers: HEADERS)
           raise "Fetch failed: #{response.code}" if response.code != 200
           raise "Fetch Failed: #{response["error"]}" if response.key?("error")
+          puts response
           Presenters::RestfulApi::Object.new(response["id"], response["name"], response["data"])
         end
 
@@ -36,17 +37,35 @@ module Integrator
         def update_object(id, name, data)
           response = HTTParty.put(URL + "/#{id}", headers: HEADERS, body: {name: name, data: data}.to_json)
           if response.success?
-            puts "Successfully Created Object"
+            puts "Successfully Updated Object"
           else
-            raise "Create Failed: #{response.code} - #{response["error"]}"
+            raise "Update Failed: #{response.code} - #{response["error"]}"
           end
           Presenters::RestfulApi::Object.new(response["id"], response["name"], response["data"])
         end
 
         def update_name(id, name)
+          response = HTTParty.patch(URL + "/#{id}", headers: HEADERS, body: {name: name}.to_json)
+
+          if response.success?
+            puts "Successfully Updated Object"
+          else
+            raise "Update Failed: #{response.code} - #{response["error"]}"
+          end
+
+          Presenters::RestfulApi::Object.new(response["id"], response["name"], response["data"])
         end
 
         def delete_object(id)
+          response = HTTParty.delete(URL + "/#{id}", headers: HEADERS)
+
+          if response.success?
+            puts "Successfully deleted object"
+          else
+            raise "Delete Failed: #{response.code} - #{response["error"]}"
+          end
+
+          Presenters::Empty.new(response)
         end
       end
     end
