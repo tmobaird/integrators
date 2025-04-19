@@ -20,7 +20,6 @@ module Integrator
           response = HTTParty.get(URL + "/#{id}", headers: HEADERS)
           raise "Fetch failed: #{response.code}" if response.code != 200
           raise "Fetch Failed: #{response["error"]}" if response.key?("error")
-          puts response
           Presenters::RestfulApi::Object.new(response["id"], response["name"], response["data"])
         end
 
