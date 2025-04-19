@@ -16,7 +16,7 @@ module Integrator
       name: "restful",
       description: "Interaction with the restful api",
       client: Clients::RestfulApiClient,
-      actions: [:objects, :object, :create_object]
+      actions: [:objects, :object, :create_object, :update_object]
     }
   ]
 end

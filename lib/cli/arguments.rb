@@ -11,10 +11,6 @@ module Integrator
         parse
       end
 
-      def new_hash
-        Hash.new { |h, k| h[k] = new_hash }
-      end
-
       def each(&block)
         @args.each do |arg|
           block.call arg
@@ -48,6 +44,10 @@ module Integrator
         output
       end
 
+      def parameterized_variables
+        @variables.values
+      end
+
       private
 
       def parse
@@ -67,6 +67,10 @@ module Integrator
         end
 
         current[last_key] = value
+      end
+
+      def new_hash
+        Hash.new { |h, k| h[k] = new_hash }
       end
     end
   end

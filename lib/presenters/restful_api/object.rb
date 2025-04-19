@@ -12,7 +12,7 @@ module Integrator
 
         def output
           %(Name: #{@name} \(id: #{@id}\)
-          #{@data.map { |k, v| "- #{k}: #{v}" }.join("\n")})
+#{@data.map { |k, v| "- #{k}: #{v}" }.join("\n")})
         end
       end
     end

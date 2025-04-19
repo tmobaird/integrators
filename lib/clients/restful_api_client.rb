@@ -25,7 +25,7 @@ module Integrator
 
         def create_object(name, data)
           response = HTTParty.post(URL, headers: HEADERS, body: {name: name, data: data}.to_json)
-          if response.code > 199 && response.code < 300
+          if response.success?
             puts "Successfully Created Object"
           else
             raise "Create Failed: #{response.code} - #{response["error"]}"
@@ -33,7 +33,17 @@ module Integrator
           Presenters::RestfulApi::Object.new(response["id"], response["name"], response["data"])
         end
 
-        def update_object(id, params)
+        def update_object(id, name, data)
+          response = HTTParty.put(URL + "/#{id}", headers: HEADERS, body: {name: name, data: data}.to_json)
+          if response.success?
+            puts "Successfully Created Object"
+          else
+            raise "Create Failed: #{response.code} - #{response["error"]}"
+          end
+          Presenters::RestfulApi::Object.new(response["id"], response["name"], response["data"])
+        end
+
+        def update_name(id, name)
         end
 
         def delete_object(id)
