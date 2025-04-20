@@ -12,7 +12,7 @@ Let's practice integrating with all sorts of HTTP APIs
 - [x] JSON PUT (https://restful-api.dev/)
 - [x] JSON DELETE (https://restful-api.dev/)
 - [x] Api Key Authentication (openai api)
-- [ ] OAuth (https://developers.google.com/analytics/)
+- [x] OAuth (https://developers.google.com/analytics/)
 - [ ] Basic authentication (jira)
 - [ ] Graphql (github api)
 - [ ] Error handling

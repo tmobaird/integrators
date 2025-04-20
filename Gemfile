@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-gem "standard"
 gem "debug"
-gem "webmock"
+gem "dotenv"
 gem "httparty"
+gem "jwt"
+gem "standard"
+gem "webmock"

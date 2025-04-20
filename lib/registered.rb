@@ -23,6 +23,12 @@ module Integrator
       description: "Interact with the OpenAI APIs",
       client: Clients::OpenAiClient,
       actions: [:chat]
+    },
+    {
+      name: "goog-analytics",
+      description: "Interact with the Google Analytics APIs",
+      client: Clients::GoogleAnalyticsClient,
+      actions: [:metric]
     }
   ]
 end
