@@ -29,6 +29,12 @@ module Integrator
       description: "Interact with the Google Analytics APIs",
       client: Clients::GoogleAnalyticsClient,
       actions: [:metric]
+    },
+    {
+      name: "github",
+      description: "Interact with the Github API",
+      client: Clients::GithubClient,
+      actions: [:contributions]
     }
   ]
 end

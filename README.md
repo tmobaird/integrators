@@ -14,7 +14,7 @@ Let's practice integrating with all sorts of HTTP APIs
 - [x] Api Key Authentication (openai api)
 - [x] OAuth (https://developers.google.com/analytics/)
 - [ ] Basic authentication (jira)
-- [ ] Graphql (github api)
+- [x] Graphql (github api)
 - [ ] Error handling
 - [ ] XML GET list (http://api.nbp.pl/en.html)
 - [ ] XML GET one
