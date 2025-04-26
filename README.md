@@ -16,7 +16,7 @@ Let's practice integrating with all sorts of HTTP APIs
 - [ ] Basic authentication (jira)
 - [x] Graphql (github api)
 - [ ] Error handling
-- [ ] XML GET list (http://api.nbp.pl/en.html)
+- [x] XML GET list (https://mocktarget.apigee.net/xml)
 - [ ] XML GET one
 - [ ] XML POST
 - [ ] CSV GET list

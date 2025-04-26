@@ -25,7 +25,7 @@ module Integrator
       actions: [:chat]
     },
     {
-      name: "goog-analytics",
+      name: "google-analytics",
       description: "Interact with the Google Analytics APIs",
       client: Clients::GoogleAnalyticsClient,
       actions: [:metric]
@@ -35,6 +35,12 @@ module Integrator
       description: "Interact with the Github API",
       client: Clients::GithubClient,
       actions: [:contributions]
+    },
+    {
+      name: "google-xml",
+      description: "Make a request to google's sample XML API",
+      client: Clients::GoogleXmlClient,
+      actions: [:xml]
     }
   ]
 end
