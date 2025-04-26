@@ -19,6 +19,8 @@ module Integrator
                 required, optional = params(config[:client], action, api_args)
                 response = config[:client].send(action, *required, *api_args.parameterized_variables, **optional)
                 output(response)
+              rescue FailedToFetchError, FailedToOutputError => e
+                puts "Failed to perform #{config[:name]} -> #{action}\n#{e.message}"
               rescue => e
                 puts "Failed to perform #{config[:name]} -> #{action} (Error: #{e.message})"
               end
@@ -55,6 +57,8 @@ module Integrator
         else
           puts result.output
         end
+      rescue => e
+        raise FailedToOutputError.new(e)
       end
     end
   end

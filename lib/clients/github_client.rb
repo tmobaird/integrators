@@ -27,7 +27,7 @@ module Integrator
           }
           GRAPHQL
           response = HTTParty.post(URL, headers: HEADERS, body: {query: query}.to_json)
-          raise "Fetch failed: #{response.code}" unless response.success?
+          raise_unless_success(response)
           Presenters::Github::Contributions.new(response, from, to)
         end
 

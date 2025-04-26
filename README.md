@@ -15,7 +15,7 @@ Let's practice integrating with all sorts of HTTP APIs
 - [x] OAuth (https://developers.google.com/analytics/)
 - [ ] Basic authentication (jira)
 - [x] Graphql (github api)
-- [ ] Error handling
+- [x] Error handling
 - [x] XML GET list (https://mocktarget.apigee.net/xml)
 - [ ] XML GET one
 - [ ] XML POST
