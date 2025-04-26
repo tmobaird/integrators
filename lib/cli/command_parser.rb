@@ -51,8 +51,9 @@ module Integrator
     def help
       puts "Integrators Help:"
       puts "Namespace: #{@namespace}" if @namespace
-      @commands.each do |command|
-        puts command.help
+      longest_name = @commands.max_by { |command| command.name.length }.name
+      @commands.sort_by { |command| command.name }.each do |command|
+        puts command.help(longest_name.length)
       end
     end
   end

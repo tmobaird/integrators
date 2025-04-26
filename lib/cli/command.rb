@@ -9,8 +9,8 @@ module Integrator
       @block = block
     end
 
-    def help
-      output = "#{@name}  #{@description}"
+    def help(name_col_width)
+      output = "#{@name}#{" " * (name_col_width - name.length)}  #{@description}"
       output += " (Arguments: #{params_help})" if params.count > 0
       output
     end
